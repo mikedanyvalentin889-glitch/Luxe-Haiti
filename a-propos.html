@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos — Luxe HAITI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="main-header" id="header">
+        <div class="container">
+            <nav class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">Luxe<span class="logo-accent">HAITI</span></span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Vêtements</a></li>
+                    <li><a href="produits.html?cat=mecanique">Mécanique</a></li>
+                    <li><a href="a-propos.html" class="active">À Propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="panier.html" class="cart-btn" aria-label="Panier">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                            <path d="M3 6h18"></path>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about-section section">
+        <div class="container">
+            <div class="about-hero">
+                <h1>Luxe HAITI</h1>
+                <p class="about-tagline">L'excellence haïtienne, à portée de main</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-block">
+                    <h2>Notre Histoire</h2>
+                    <p>Fondé à Delmas 31, Luxe HAITI est né d'une vision simple : offrir aux Haïtiens des produits de qualité supérieure, qu'il s'agisse de mode tendance ou d'outils mécaniques professionnels. Nous croyons que chaque Haïtien mérite l'accès à des produits premium, livrés rapidement et en toute confiance.</p>
+                </div>
+                
+                <div class="about-block">
+                    <h2>Notre Mission</h2>
+                    <p>Rendre le shopping en ligne accessible, fiable et agréable pour tous les Haïtiens. Nous sélectionnons rigoureusement chaque produit pour garantir qualité et durabilité, tout en soutenant l'économie locale.</p>
+                </div>
+                
+                <div class="about-values">
+                    <h2>Nos Valeurs</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">🇭🇹</div>
+                            <h3>Fierté Haïtienne</h3>
+                            <p>Entreprise 100% haïtienne, au service de notre peuple</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">✨</div>
+                            <h3>Qualité Premium</h3>
+                            <p>Chaque produit est testé et sélectionné avec soin</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🤝</div>
+                            <h3>Confiance</h3>
+                            <p>Paiement sécurisé et livraison garantie</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">⚡</div>
+                            <h3>Rapidité</h3>
+                            <p>Livraison en 24-48h dans la zone métropolitaine</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Luxe HAITI. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/panier-logic.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>
