@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finaliser la Commande — Luxe HAITI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="main-header simple" id="header">
+        <div class="container">
+            <nav class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">Luxe<span class="logo-accent">HAITI</span></span>
+                </a>
+                <div class="checkout-steps">
+                    <span class="step active">1. Panier</span>
+                    <span class="step-separator">→</span>
+                    <span class="step active">2. Livraison</span>
+                    <span class="step-separator">→</span>
+                    <span class="step">3. Confirmation</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="checkout-section section">
+        <div class="container">
+            <div class="checkout-layout">
+                <div class="checkout-form">
+                    <h2>Informations de livraison</h2>
+                    <form id="checkoutForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prenom">Prénom *</label>
+                                <input type="text" id="prenom" required placeholder="Jean">
+                            </div>
+                            <div class="form-group">
+                                <label for="nom">Nom *</label>
+                                <input type="text" id="nom" required placeholder="Pierre">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telephone">Téléphone *</label>
+                            <input type="tel" id="telephone" required placeholder="509 xxxx xxxx">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email (optionnel)</label>
+                            <input type="email" id="email" placeholder="exemple@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="adresse">Adresse complète *</label>
+                            <textarea id="adresse" rows="3" required placeholder="Delmas 31, Rue..., près de..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="zone">Zone de livraison *</label>
+                            <select id="zone" required>
+                                <option value="">Choisir une zone</option>
+                                <option value="delmas">Delmas (gratuit)</option>
+                                <option value="petion">Pétion-Ville (+200 HTG)</option>
+                                <option value="paup">Port-au-Prince (+300 HTG)</option>
+                                <option value="carrefour">Carrefour (+400 HTG)</option>
+                                <option value="tabarre">Tabarre (+350 HTG)</option>
+                                <option value="autre">Autre (nous contacter)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Notes de livraison (optionnel)</label>
+                            <textarea id="notes" rows="2" placeholder="Instructions spéciales..."></textarea>
+                        </div>
+                        
+                        <h2 class="form-section-title">Mode de paiement</h2>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="moncash" checked>
+                                <div class="payment-card">
+                                    <div class="payment-icon">📱</div>
+                                    <div class="payment-info">
+                                        <strong>MonCash</strong>
+                                        <span>Paiement mobile Digicel</span>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="natcash">
+                                <div class="payment-card">
+                                    <div class="payment-icon">📲</div>
+                                    <div class="payment-info">
+                                        <strong>NatCash</strong>
+                                        <span>Paiement mobile Natcom</span>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cash">
+                                <div class="payment-card">
+                                    <div class="payment-icon">💵</div>
+                                    <div class="payment-info">
+                                        <strong>Cash à la livraison</strong>
+                                        <span>Payer lors de la réception</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large btn-full">
+                            Confirmer la commande
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="checkout-summary">
+                    <h2>Votre commande</h2>
+                    <div class="order-items" id="orderItems"></div>
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Sous-total</span>
+                            <span id="orderSubtotal">0 HTG</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Livraison</span>
+                            <span id="orderShipping">0 HTG</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Total</span>
+                            <span id="orderTotal">0 HTG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/data-produits.js"></script>
+    <script src="js/panier-logic.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>
