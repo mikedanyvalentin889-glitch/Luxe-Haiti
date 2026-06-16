@@ -1,165 +1,58 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produit — Luxe HAITI</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/produits.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/responsive.css">
-</head>
-<body>
-    <header class="main-header" id="header">
-        <div class="container">
-            <nav class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <span class="logo-icon">◆</span>
-                    <span class="logo-text">Luxe<span class="logo-accent">HAITI</span></span>
-                </a>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="produits.html">Vêtements</a></li>
-                    <li><a href="produits.html?cat=mecanique">Mécanique</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <a href="compte.html" class="account-btn" aria-label="Mon compte">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
+        document.getElementById('productDetail').innerHTML = `
+            <div class="product-gallery">
+                <div class="product-main-image">
+                    <img src="${product.image}" alt="${product.nom}" id="mainImage" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="product-img-placeholder" style="display: none; background: ${product.categorie === 'vetements' ? 'linear-gradient(135deg, #1e3a5f, #0a1628)' : 'linear-gradient(135deg, #2d3748, #1a202c)'}">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            ${product.categorie === 'vetements' 
+                                ? '<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23Z"></path>'
+                                : '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>'}
                         </svg>
-                    </a>
-                    <a href="panier.html" class="cart-btn" aria-label="Panier">
+                    </div>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">${product.categorie === 'vetements' ? 'Vêtements' : 'Mécanique'}</span>
+                <h1>${product.nom}</h1>
+                <div class="product-price">
+                    <span class="current-price">${product.prix.toLocaleString()} HTG</span>
+                    ${product.ancienPrix ? `<span class="old-price">${product.ancienPrix.toLocaleString()} HTG</span>` : ''}
+                </div>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="reviews">(${product.avis || 12} avis)</span>
+                </div>
+                <p class="product-description">${product.description}</p>
+                
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <button class="qty-btn" onclick="updateQty(-1)">−</button>
+                        <input type="number" id="qtyInput" value="1" min="1" max="10" readonly>
+                        <button class="qty-btn" onclick="updateQty(1)">+</button>
+                    </div>
+                    <button class="btn btn-primary btn-large" onclick="addToCartFromDetail()">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
                             <path d="M3 6h18"></path>
                             <path d="M16 10a4 4 0 0 1-8 0"></path>
                         </svg>
-                        <span class="cart-count" id="cartCount">0</span>
-                    </a>
-                    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-                        <span></span><span></span><span></span>
+                        Ajouter au panier
                     </button>
                 </div>
-            </nav>
-        </div>
-    </header>
-
-    <section class="product-detail section">
-        <div class="container">
-            <div class="breadcrumb">
-                <a href="index.html">Accueil</a>
-                <span>/</span>
-                <a href="produits.html" id="breadcrumbCategory">Produits</a>
-                <span>/</span>
-                <span id="breadcrumbName">Détail</span>
-            </div>
-            
-            <div class="product-detail-grid" id="productDetail">
-                <!-- Product image and info rendered by JS -->
-            </div>
-        </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>© 2026 Luxe HAITI. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/data-produits.js"></script>
-    <script src="js/panier-logic.js"></script>
-    <script src="js/navigation.js"></script>
-    <script>
-        // Product detail logic inline
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
-        const product = produits.find(p => p.id == productId);
-        
-        if (product) {
-            document.getElementById('breadcrumbName').textContent = product.nom;
-            document.getElementById('breadcrumbCategory').href = `produits.html?cat=${product.categorie}`;
-            document.getElementById('breadcrumbCategory').textContent = product.categorie === 'vetements' ? 'Vêtements' : 'Mécanique';
-            
-            document.getElementById('productDetail').innerHTML = `
-                <div class="product-gallery">
-                    <div class="product-main-image">
-                        <div class="product-img-placeholder" style="background: ${product.categorie === 'vetements' ? 'linear-gradient(135deg, #1e3a5f, #0a1628)' : 'linear-gradient(135deg, #2d3748, #1a202c)'}">
-                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                ${product.categorie === 'vetements' 
-                                    ? '<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23Z"></path>'
-                                    : '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>'}
-                            </svg>
-                        </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                        <span>Livraison 24-48h à Delmas</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Paiement MonCash accepté</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        <span>Garantie qualité</span>
                     </div>
                 </div>
-                <div class="product-info">
-                    <span class="product-category">${product.categorie === 'vetements' ? 'Vêtements' : 'Mécanique'}</span>
-                    <h1>${product.nom}</h1>
-                    <div class="product-price">
-                        <span class="current-price">${product.prix.toLocaleString()} HTG</span>
-                        ${product.ancienPrix ? `<span class="old-price">${product.ancienPrix.toLocaleString()} HTG</span>` : ''}
-                    </div>
-                    <div class="product-rating">
-                        <span class="stars">★★★★★</span>
-                        <span class="reviews">(${product.avis || 12} avis)</span>
-                    </div>
-                    <p class="product-description">${product.description}</p>
-                    
-                    <div class="product-actions">
-                        <div class="quantity-selector">
-                            <button class="qty-btn" onclick="updateQty(-1)">−</button>
-                            <input type="number" id="qtyInput" value="1" min="1" max="10" readonly>
-                            <button class="qty-btn" onclick="updateQty(1)">+</button>
-                        </div>
-                        <button class="btn btn-primary btn-large" onclick="addToCartFromDetail()">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                                <path d="M3 6h18"></path>
-                                <path d="M16 10a4 4 0 0 1-8 0"></path>
-                            </svg>
-                            Ajouter au panier
-                        </button>
-                    </div>
-                    
-                    <div class="product-meta">
-                        <div class="meta-item">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                            <span>Livraison 24-48h à Delmas</span>
-                        </div>
-                        <div class="meta-item">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                            <span>Paiement MonCash accepté</span>
-                        </div>
-                        <div class="meta-item">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                            <span>Garantie qualité</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function updateQty(change) {
-            const input = document.getElementById('qtyInput');
-            let val = parseInt(input.value) + change;
-            if (val >= 1 && val <= 10) input.value = val;
-        }
-        
-        function addToCartFromDetail() {
-            const qty = parseInt(document.getElementById('qtyInput').value);
-            for(let i=0; i<<qty; i++) ajouterAuPanier(product.id);
-            alert(`${qty} × ${product.nom} ajouté au panier !`);
-        }
-    </script>
-</body>
-</html>
+            </div>
+        `;
