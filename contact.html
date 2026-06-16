@@ -41,3 +41,101 @@
                     <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
                         <span></span><span></span><span></span>
                     </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-section section">
+        <div class="container">
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <h1>Contactez-nous</h1>
+                    <p>Nous sommes là pour vous aider ! Contactez-nous par WhatsApp, téléphone ou visitez-nous à Delmas.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📱</div>
+                            <div class="method-details">
+                                <h3>WhatsApp</h3>
+                                <a href="https://wa.me/50938954747" target="_blank">509 3895-4747</a>
+                                <span>Réponse rapide garantie</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📞</div>
+                            <div class="method-details">
+                                <h3>Téléphone</h3>
+                                <a href="tel:+50938954747">509 3895-4747</a>
+                                <span>Lun-Sam: 8h - 18h</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📍</div>
+                            <div class="method-details">
+                                <h3>Adresse</h3>
+                                <p>Delmas 31, Haïti</p>
+                                <span>Venez nous voir !</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">✉️</div>
+                            <div class="method-details">
+                                <h3>Email</h3>
+                                <a href="mailto:contact@luxehaiti.ht">contact@luxehaiti.ht</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <h2>Envoyer un message</h2>
+                        <div class="form-group">
+                            <label for="contactNom">Nom *</label>
+                            <input type="text" id="contactNom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactTel">Téléphone *</label>
+                            <input type="tel" id="contactTel" required placeholder="509 xxxx xxxx">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSujet">Sujet</label>
+                            <select id="contactSujet">
+                                <option>Question sur un produit</option>
+                                <option>Suivi de commande</option>
+                                <option>Problème de livraison</option>
+                                <option>Devenir partenaire</option>
+                                <option>Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message *</label>
+                            <textarea id="contactMessage" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large btn-full">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Luxe HAITI. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/panier-logic.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message envoyé ! Nous vous répondrons sous 24h.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
