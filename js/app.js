@@ -1,8 +1,3 @@
-// Main app initialization
-document.addEventListener('DOMContentLoaded', () => {
-    // Update cart count on all pages
-    updateCartCount();
-    
     // Render featured products on homepage
     const featuredGrid = document.getElementById('featuredProducts');
     if (featuredGrid && typeof produits !== 'undefined') {
@@ -13,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         featuredGrid.innerHTML = featured.map(p => `
             <div class="product-card">
                 <div class="product-image">
-                    <div class="product-placeholder" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: ${p.categorie === 'vetements' ? 'linear-gradient(135deg, #1e3a5f, #0a1628)' : 'linear-gradient(135deg, #2d3748, #1a202c)'}">
+                    <img src="${p.image}" alt="${p.nom}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="product-placeholder" style="display: none; background: ${p.categorie === 'vetements' ? 'linear-gradient(135deg, #1e3a5f, #0a1628)' : 'linear-gradient(135deg, #2d3748, #1a202c)'}">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
                             ${p.categorie === 'vetements' 
                                 ? '<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23Z"></path>'
@@ -48,16 +44,3 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
     }
-    
-    // Newsletter form
-    const newsletterForm = document.getElementById('newsletterForm');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Merci ! Vous recevrez nos offres sur WhatsApp.');
-            newsletterForm.reset();
-        });
-    }
-    
-    console.log('🛒 Luxe HAITI E-commerce chargé avec succès !');
-});
