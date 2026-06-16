@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Produits — Luxe HAITI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/produits.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="main-header" id="header">
+        <div class="container">
+            <nav class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">Luxe<span class="logo-accent">HAITI</span></span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html?cat=vetements" class="active">Vêtements</a></li>
+                    <li><a href="produits.html?cat=mecanique">Mécanique</a></li>
+                    <li><a href="a-propos.html">À Propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="search-btn" id="searchBtn" aria-label="Rechercher">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <a href="compte.html" class="account-btn" aria-label="Mon compte">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+                    <a href="panier.html" class="cart-btn" aria-label="Panier">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                            <path d="M3 6h18"></path>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 id="pageTitle">Tous nos Produits</h1>
+            <p>Découvrez notre sélection premium de vêtements et outils mécaniques</p>
+        </div>
+    </section>
+
+    <!-- Filters & Products -->
+    <section class="products-section section">
+        <div class="container">
+            <div class="products-layout">
+                <!-- Sidebar Filters -->
+                <aside class="filters-sidebar" id="filtersSidebar">
+                    <div class="filter-group">
+                        <h3>Catégories</h3>
+                        <ul class="filter-list" id="categoryFilters">
+                            <li><button class="filter-btn active" data-filter="all">Tous les produits</button></li>
+                            <li><button class="filter-btn" data-filter="vetements">Vêtements</button></li>
+                            <li><button class="filter-btn" data-filter="mecanique">Mécanique</button></li>
+                            <li><button class="filter-btn" data-filter="accessoires">Accessoires</button></li>
+                        </ul>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Prix</h3>
+                        <div class="price-range">
+                            <input type="range" id="priceRange" min="0" max="10000" value="10000" step="100">
+                            <div class="price-labels">
+                                <span>0 HTG</span>
+                                <span id="priceValue">10,000 HTG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Disponibilité</h3>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="stockFilter" checked>
+                            <span class="checkmark"></span>
+                            En stock uniquement
+                        </label>
+                    </div>
+                </aside>
+
+                <!-- Products Grid -->
+                <div class="products-main">
+                    <div class="products-toolbar">
+                        <span class="results-count" id="resultsCount">12 produits</span>
+                        <div class="sort-select">
+                            <select id="sortSelect">
+                                <option value="newest">Plus récents</option>
+                                <option value="price-asc">Prix croissant</option>
+                                <option value="price-desc">Prix décroissant</option>
+                                <option value="popular">Plus populaires</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="products-grid" id="productsGrid"></div>
+                    <div class="pagination" id="pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-overlay" id="searchOverlay"></div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher un produit..." autofocus>
+            <button class="search-close" id="searchClose">✕</button>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">◆</span>
+                        <span class="logo-text">Luxe<span class="logo-accent">HAITI</span></span>
+                    </a>
+                    <p>Votre destination premium pour la mode et la mécanique en Haïti.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Boutique</h4>
+                    <ul>
+                        <li><a href="produits.html?cat=vetements">Vêtements</a></li>
+                        <li><a href="produits.html?cat=mecanique">Mécanique</a></li>
+                        <li><a href="produits.html?cat=nouveautes">Nouveautés</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>📍 Delmas 31, Haïti</p>
+                    <p>📞 509 3895-4747</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Luxe HAITI. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data-produits.js"></script>
+    <script src="js/panier-logic.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/produits-filtre.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
